@@ -1,24 +1,39 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Profile Saver",
+  "name": "LinkedIn Extension",
   "version": "1.0",
-  "description": "Save LinkedIn profile names to Google Sheets",
+  "description": "Gather profile information from LinkedIn and save it to a Google Sheet.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
   "permissions": [
     "activeTab",
     "scripting",
-    "identity"
+    "storage"
   ],
-  "action": {
-    "default_icon": {
-      "16": "/images/icon_16.png",
-      "48": "/images/icon_48.png",
-      "128": "/images/icon_128.png"
-    }
+  "host_permissions": [
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
   },
-  "icons": {
-    "16": "/images/icon_16.png",
-    "48": "/images/icon_48.png",
-    "128": "/images/icon_128.png"
+  "action_handlers": {
+    "chrome_action": {
+      "default_popup": {
+        "popup": "popup.html",
+        "keep_open": true
+      }
+    }
   },
   "web_accessible_resources": [
     {
@@ -27,7 +42,7 @@
     }
   ],
   "oauth2": {
-    "client_id": "101446701398647168633.apps.googleusercontent.com",
+    "client_id": "101446701398647168633",
     "scopes": ["https://www.googleapis.com/auth/spreadsheets"]
   }
 }
