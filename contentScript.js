@@ -26,12 +26,28 @@ const init = function() {
     injectElement.innerHTML += ' Add to CRM';
 
     injectElement.addEventListener('click', function() {
-      alert('Profile Name: ' + nombrePersona);
+      const profileInfo = separateProfileInfo(nombrePersona);
+      alert('Profile Name: ' + profileInfo.nombrePersona);
+      alert('Connection: ' + profileInfo.connection);
+      alert('Headline: ' + profileInfo.headline);
     });
 
     profileNameElement.parentNode.insertBefore(injectElement, profileNameElement.nextSibling);
   }
 };
+
+function separateProfileInfo(nombrePersona) {
+  const parts = nombrePersona.split(/\s{2,}/);
+  const name = parts[0].trim();
+  const connection = parts[1].trim();
+  const headline = parts[3].trim();
+
+  return {
+    nombrePersona: name,
+    connection: connection,
+    headline: headline
+  };
+}
 
 // Call the init function
 init();
