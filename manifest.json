@@ -1,19 +1,20 @@
 {
-  "manifest_version": 3,
-  "name": "Mi Extensión de LinkedIn",
-  "version": "1.0",
-  "permissions": ["activeTab"],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
+    "name": "Linkedin CRM",
+    "version": "0.01",
+    "icons": {
       "16": "images/icon16.png",
       "48": "images/icon48.png",
       "128": "images/icon128.png"
-    }
-  },
-  "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    },
+    "description": "A simple chrome extension to add Linkedin profiles to CRM in a single click",
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "host_permissions": ["<all_urls>"],
+    "manifest_version": 3
   }
-}
+  
