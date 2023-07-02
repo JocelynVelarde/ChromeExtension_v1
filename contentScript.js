@@ -1,7 +1,6 @@
-
-
 const init = function () {
   const profileNameElement = document.querySelector('.pv-top-card-v2-ctas');
+
 
   if (profileNameElement) {
     const injectElement = document.createElement('div');
@@ -10,31 +9,30 @@ const init = function () {
     const profileInfo = document.createElement('div');
     profileInfo.className = 'profile-info';
 
-    const addToCRMButton = document.createElement('button');
-    addToCRMButton.className = 'button-crm';
+    const hoverElement = document.createElement('div');
+    hoverElement.className = 'hover-element';
+    hoverElement.textContent = 'Hover me for more info ';
+    hoverElement.style.display = 'inline-block';
+    hoverElement.style.marginTop = '16px';
+    hoverElement.style.padding = '8px 16px';
+    hoverElement.style.background = '#0a66c2';
+    hoverElement.style.color = '#fff';
+    hoverElement.style.border = 'none';
+    hoverElement.style.borderRadius = '20px';
+    hoverElement.style.cursor = 'pointer';
 
-    addToCRMButton.style.border = 'none';
-    addToCRMButton.style.borderRadius = '16px';
-    addToCRMButton.style.padding = '8px 16px';
-    addToCRMButton.style.background = '#0a66c2';
-    addToCRMButton.style.color = '#fff';
-    addToCRMButton.style.fontWeight = 'bold';
-    addToCRMButton.style.marginTop = '16px';
+
 
     const iconSpan = document.createElement('span');
     iconSpan.className = 'plus-icon';
     iconSpan.innerHTML = '&#43;';
     iconSpan.style.fontSize = '17px';
 
-    addToCRMButton.appendChild(iconSpan);
-    addToCRMButton.innerHTML += ' Add to CRM';
+    hoverElement.appendChild(iconSpan);
 
-    var element = document.querySelector(profileInfo);
-    element.parentElement.removeChild(element);
-
-
-    addToCRMButton.addEventListener('click', function () {
+    hoverElement.addEventListener('mouseenter', function () {
       const nombrePersonaElement = document.querySelector('.pv-text-details__left-panel');
+      const urlPerfil = window.location.href;
       const nombrePersona = nombrePersonaElement ? nombrePersonaElement.textContent.trim() : null;
 
       const profileInfoData = separateProfileInfo(nombrePersona);
@@ -44,13 +42,18 @@ const init = function () {
         <p><strong>Pronouns:</strong> ${profileInfoData.pronouns}</p>
         <p><strong>Connection:</strong> ${profileInfoData.connection}</p>
         <p><strong>Headline:</strong> ${profileInfoData.headline}</p>
+        <p><strong>Linkedin:</strong> <a href="${urlPerfil}" target="_blank">${urlPerfil}</a></p>
       `;
 
       profileInfo.style.display = 'block';
     });
 
+    hoverElement.addEventListener('mouseleave', function () {
+      profileInfo.style.display = 'none';
+    });
+
     injectElement.appendChild(profileInfo);
-    injectElement.appendChild(addToCRMButton);
+    injectElement.appendChild(hoverElement);
 
     profileNameElement.parentNode.insertBefore(injectElement, profileNameElement.nextSibling);
   }
@@ -82,6 +85,9 @@ function separateProfileInfo(nombrePersona) {
     headline: headline
   };
 }
+
+
+
 
 // Call the init function
 init();
