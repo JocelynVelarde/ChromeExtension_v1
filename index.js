@@ -48,5 +48,5 @@ app.get("/", async (req, res) => {
 
     res.send(getRows.data);
 });
-
-app.listen(1338, (req, res) => console.log("Server running on port 1337")); 
+const portServer = process.env.PORT || 1338;
+app.listen(portServer, (req, res) => console.log("Server running on port " + portServer)); 
