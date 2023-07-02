@@ -1,3 +1,5 @@
+
+
 const init = function () {
   const profileNameElement = document.querySelector('.pv-top-card-v2-ctas');
 
@@ -26,6 +28,10 @@ const init = function () {
 
     addToCRMButton.appendChild(iconSpan);
     addToCRMButton.innerHTML += ' Add to CRM';
+
+    var element = document.querySelector(profileInfo);
+    element.parentElement.removeChild(element);
+
 
     addToCRMButton.addEventListener('click', function () {
       const nombrePersonaElement = document.querySelector('.pv-text-details__left-panel');
