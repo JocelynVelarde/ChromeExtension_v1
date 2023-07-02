@@ -1,8 +1,9 @@
 const init = function () {
   const profileNameElement = document.querySelector('.pv-top-card-v2-ctas');
+  const locationElement = document.querySelector('.pv-text-details__left-panel.mt2');
 
 
-  if (profileNameElement) {
+  if (profileNameElement && locationElement) {
     const injectElement = document.createElement('div');
     injectElement.className = 'info-container';
 
@@ -32,16 +33,21 @@ const init = function () {
 
     hoverElement.addEventListener('mouseenter', function () {
       const nombrePersonaElement = document.querySelector('.pv-text-details__left-panel');
+
       const urlPerfil = window.location.href;
       const nombrePersona = nombrePersonaElement ? nombrePersonaElement.textContent.trim() : null;
-
+      const locationElement = document.querySelector('.pv-text-details__left-panel.mt2'); // New element
       const profileInfoData = separateProfileInfo(nombrePersona);
+      const locationRaw = locationElement ? locationElement.textContent.trim() : null;
+      const separator = 'Contact info';
+      const location = locationRaw.replace(separator, '').trim();
 
       profileInfo.innerHTML = `
         <p><strong>Profile Name:</strong> ${profileInfoData.nombrePersona}</p>
         <p><strong>Pronouns:</strong> ${profileInfoData.pronouns}</p>
         <p><strong>Connection:</strong> ${profileInfoData.connection}</p>
         <p><strong>Headline:</strong> ${profileInfoData.headline}</p>
+        <p><strong>Location:</strong> ${location}</p>
         <p><strong>Linkedin:</strong> <a href="${urlPerfil}" target="_blank">${urlPerfil}</a></p>
       `;
 
