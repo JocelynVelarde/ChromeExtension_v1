@@ -1,5 +1,5 @@
 {
-  "name": "LinkedIn to Google Sheets CMR Extension",
+  "name": "Wow Work",
   "version": "1.0",
   "description": "Uses OAuth to connect to Google's Spreadsheet API, while gathering public data of your choice from Linkedin.",
   "icons": {
@@ -10,7 +10,8 @@
   "author": "Jocelyn Velarde",
   "manifest_version": 2,
   "browser_action": {
-    "default_title": "CMR Extension"
+    "default_title": "Wow Work",
+    "default_popup": "popup.html"
   },
   "background": {
     "page": "background.html",
