@@ -1,20 +1,45 @@
 {
-    "name": "Linkedin CRM",
-    "version": "0.01",
-    "icons": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    },
-    "description": "A simple chrome extension to add Linkedin profiles to CRM in a single click",
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["contentScript.js"],
-        "run_at": "document_end"
-      }
-    ],
-    "host_permissions": ["<all_urls>"],
-    "manifest_version": 3
-  }
-  
+  "name": "LinkedIn to Google Sheets CMR Extension",
+  "version": "1.0",
+  "description": "Uses OAuth to connect to Google's Spreadsheet API, while gathering public data of your choice from Linkedin.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "author": "Jocelyn Velarde",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_title": "CMR Extension"
+  },
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
+  "content_security_policy": "script-src 'self' https://apis.google.com/; object-src 'self'",
+  "oauth2": {
+    "client_id": "289879246221-vqnaf5t78689vbnpas6e91sg2h6qnjcv.apps.googleusercontent.com",
+    "scopes":["https://www.googleapis.com/auth/spreadsheets"]
+  },
+  "permissions": [
+    "identity"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "key": "mmkhdpnnjhknncgdkhpfloooajcpgcfd"
+}
+
+
+
+
+
+    
