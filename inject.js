@@ -1,3 +1,6 @@
+
+
+
 // Create the button
 const profileNameElement = document.querySelector('.pv-top-card-v2-ctas');
 const locationElement = document.querySelector('.pv-text-details__left-panel.mt2');
@@ -6,20 +9,23 @@ const locationElement = document.querySelector('.pv-text-details__left-panel.mt2
 const injectElement = document.createElement('div');
 injectElement.className = 'info-container';
 
+
 const profileInfo = document.createElement('div');
 profileInfo.className = 'profile-info';
 
+
 const hoverElement = document.createElement('div');
 hoverElement.className = 'hover-element';
-hoverElement.textContent = 'Hover me for more info ';
+hoverElement.textContent = 'WoW';
 hoverElement.style.display = 'inline-block';
 hoverElement.style.marginTop = '16px';
 hoverElement.style.padding = '8px 16px';
-hoverElement.style.background = '#0a66c2';
+hoverElement.style.background = 'linear-gradient(to right, #0a66c2, #00bcd4)';
 hoverElement.style.color = '#fff';
 hoverElement.style.border = 'none';
 hoverElement.style.borderRadius = '20px';
 hoverElement.style.cursor = 'pointer';
+
 
 const iconSpan = document.createElement('span');
 iconSpan.className = 'plus-icon';
@@ -29,6 +35,14 @@ iconSpan.style.fontSize = '17px';
 hoverElement.appendChild(iconSpan);
 
 hoverElement.addEventListener("click", function() {
+    const infoContainer = document.createElement('div');
+    infoContainer.style.background = 'linear-gradient(to right, #0a66c2, #00bcd4)';
+    infoContainer.style.color = '#fff';
+    infoContainer.style.padding = '16px';
+    infoContainer.style.marginTop = '16px';
+    infoContainer.style.borderRadius = '18px';
+
+
     const nombrePersonaElement = document.querySelector('.pv-text-details__left-panel');
     const urlPerfil = window.location.href;
     const nombrePersona = nombrePersonaElement ? nombrePersonaElement.textContent.trim() : null;
@@ -37,6 +51,10 @@ hoverElement.addEventListener("click", function() {
     const locationRaw = locationElement ? locationElement.textContent.trim() : null;
     const separator = 'Contact info';
     const location = locationRaw.replace(separator, '').trim();
+    
+    const profileInfo = document.createElement('div');
+    profileInfo.className = 'profile-info';
+    profileInfo.style.color = '#fff';
 
     profileInfo.innerHTML = `
     <p><strong>Profile Name:</strong> ${profileInfoData.nombrePersona}</p>
@@ -47,7 +65,10 @@ hoverElement.addEventListener("click", function() {
         <p><strong>Linkedin:</strong> <a href="${urlPerfil}" target="_blank">${urlPerfil}</a></p>
       `;
 
-    profileInfo.style.display = 'block';
+      infoContainer.appendChild(profileInfo);
+      injectElement.appendChild(infoContainer);
+
+    //profileInfo.style.display = 'block';
 
     const infoToSend = {
         nombrePersona: profileInfoData.nombrePersona,
@@ -72,6 +93,7 @@ injectElement.appendChild(profileInfo);
 injectElement.appendChild(hoverElement);
 
 profileNameElement.parentNode.insertBefore(injectElement, profileNameElement.nextSibling);
+
 
 function separateProfileInfo(nombrePersona) {
     const parts = nombrePersona.split('\n').map(line => line.trim());
@@ -99,16 +121,6 @@ function separateProfileInfo(nombrePersona) {
       headline: headline
     };
   }
+  
 
 
-// Add event handler
-/*button.addEventListener ("click", function() {
-  var data = {
-    title: document.querySelector('.post__title').textContent,
-    url: window.location.href,
-  }
-  chrome.runtime.sendMessage(data, function(response) {
-    console.log('response', response);
-  });
-});
-*/
