@@ -1,6 +1,3 @@
-
-
-
 // Create the button
 const profileNameElement = document.querySelector('.pv-top-card-v2-ctas');
 const locationElement = document.querySelector('.pv-text-details__left-panel.mt2');
